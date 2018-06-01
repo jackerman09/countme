@@ -7,8 +7,7 @@ class CountersDisplay extends React.Component {
   constructor () {
     super();
     this.state = {
-      counter: {},
-      count: 0
+      counter: {}
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -20,21 +19,26 @@ class CountersDisplay extends React.Component {
             count: prevState.counter.count + 1
         }
     }));
+    const counter = this.state.counter;
+    console.log(counter)
+    axios.put(`api/counters/${counter.id}`, {counter})
+      .then(response => {
+        console.log(response);
+      })
   }
 
   fetchCounter (id) {
     axios.get( `api/counters/${id}` )
-        .then(response => {
-          this.setState({
-            counter:  response.data,
-            count:    response.data.count
-          });
-          console.log('test')
-          console.log(response.data)
-        })
-        .catch(error => {
-          console.error(error);
+      .then(response => {
+        this.setState({
+          counter:  response.data
         });
+        console.log('test')
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   setCounterIdFromQueryString (qs) {

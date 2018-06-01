@@ -1,0 +1,1 @@
+json.extract! @counter, :id, :name, :count

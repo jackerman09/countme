@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "pages#home"
   namespace :api, defaults: { format: :json } do
-    resources :counters, only: [ :show ]
+    resources :counters, only: [ :show, :update ]
   end
 end
