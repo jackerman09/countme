@@ -14,12 +14,12 @@ class CountersDisplay extends React.Component {
   }
 
   handleClick(){
-    console.log('incrementCounter')
-    const current_count = this.state.count;
-    const new_count = current_count + 1;
-    console.log(this.state.count)
-    this.setState({ count: new_count });
-    console.log(this.state.count)
+    this.setState(prevState => ({
+        counter: {
+            ...prevState.counter,
+            count: prevState.counter.count + 1
+        }
+    }));
   }
 
   fetchCounter (id) {
@@ -63,7 +63,7 @@ class CountersDisplay extends React.Component {
     return (
       <div>
         <p>{this.state.counter.name}</p>
-        <p>{this.state.count}</p>
+        <p>{this.state.counter.count}</p>
 
         <button onClick={this.handleClick} >Increment</button>
       </div>
