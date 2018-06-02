@@ -13,12 +13,16 @@ class CountersDisplay extends React.Component {
   }
 
   handleClick(){
+    console.log('handleClick - before state change')
+    console.log(this.state.counter)
     this.setState(prevState => ({
         counter: {
             ...prevState.counter,
             count: prevState.counter.count + 1
         }
     }));
+    console.log('handleClick - after state change')
+    console.log(this.state.counter)
     const counter = this.state.counter;
     console.log(counter)
     axios.put(`api/counters/${counter.id}`, {counter})
@@ -33,7 +37,7 @@ class CountersDisplay extends React.Component {
         this.setState({
           counter:  response.data
         });
-        console.log('test')
+        console.log('fetchCounter')
         console.log(response.data)
       })
       .catch(error => {
@@ -55,11 +59,6 @@ class CountersDisplay extends React.Component {
 
   componentDidMount () {
     this.setCounterIdFromQueryString(this.props.location.search);
-    this.fetchCounter(this.counterId);
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.setCounterIdFromQueryString(nextProps.location.search);
     this.fetchCounter(this.counterId);
   }
 
