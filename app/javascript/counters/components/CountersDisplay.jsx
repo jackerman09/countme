@@ -13,22 +13,18 @@ class CountersDisplay extends React.Component {
   }
 
   handleClick(){
-    console.log('handleClick - before state change')
-    console.log(this.state.counter)
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
         counter: {
             ...prevState.counter,
             count: prevState.counter.count + 1
         }
-    }));
-    console.log('handleClick - after state change')
-    console.log(this.state.counter)
-    const counter = this.state.counter;
-    console.log(counter)
-    axios.put(`api/counters/${counter.id}`, {counter})
-      .then(response => {
-        console.log(response);
-      })
+    }), () => {
+      const counter = this.state.counter;
+      axios.put(`api/counters/${counter.id}`, {counter})
+        .then(response => {
+          console.log(response);
+        })
+    });
   }
 
   fetchCounter (id) {
@@ -37,7 +33,6 @@ class CountersDisplay extends React.Component {
         this.setState({
           counter:  response.data
         });
-        console.log('fetchCounter')
         console.log(response.data)
       })
       .catch(error => {
