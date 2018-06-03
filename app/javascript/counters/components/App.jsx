@@ -3,15 +3,12 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
-import CountersDisplay from './CountersDisplay'
+import Counter from './Counter'
 
 const App = (props) => (
   <Router>
 	<div>
-	  <Route
-	    path='/'
-	    component={CountersDisplay}
-	  />
+	  <Route path='/' component={Counter} />
 	</div>
   </Router>
 )

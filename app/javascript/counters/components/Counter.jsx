@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 import axios from 'axios';
+import { CounterDisplay } from './CounterDisplay.jsx';
 
-class CountersDisplay extends React.Component {
+class Counter extends React.Component {
   constructor () {
     super();
     this.state = {
@@ -60,8 +61,7 @@ class CountersDisplay extends React.Component {
   render () {
     return (
       <div>
-        <p>{this.state.counter.name}</p>
-        <p>{this.state.counter.count}</p>
+        <CounterDisplay name={this.state.counter.name} current_count={this.state.counter.count} />
 
         <button onClick={this.handleClick} >Increment</button>
       </div>
@@ -69,4 +69,4 @@ class CountersDisplay extends React.Component {
   }
 }
 
-export default CountersDisplay;
+export default Counter;
