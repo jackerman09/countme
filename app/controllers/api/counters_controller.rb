@@ -1,6 +1,10 @@
 class Api::CountersController < ApplicationController
 	protect_from_forgery with: :null_session
 
+	def index
+		@counters = Counter.all
+	end
+
 	def show
     @counter = Counter.find(params[:id])
   end

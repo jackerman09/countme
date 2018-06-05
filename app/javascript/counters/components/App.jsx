@@ -4,6 +4,7 @@ import {
   Route
 } from 'react-router-dom'
 import Counter from './Counter'
+import { Counters } from './Counters'
 
 const App = (props) => (
   <Router>
