@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_19_173936) do
+ActiveRecord::Schema.define(version: 2018_06_18_225815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,4 +22,13 @@ ActiveRecord::Schema.define(version: 2018_05_19_173936) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "occurances", force: :cascade do |t|
+    t.boolean "is_increment"
+    t.bigint "counter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["counter_id"], name: "index_occurances_on_counter_id"
+  end
+
+  add_foreign_key "occurances", "counters"
 end
