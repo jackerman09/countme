@@ -2,14 +2,14 @@ class Counter < ApplicationRecord
 	has_many :occurrences
 
 	def current_count
-		self.occurences.is_increment.count - self.occurences.is_decrement.count
+		self.occurrences.is_increment.count - self.occurrences.is_decrement.count
 	end
 
 	def increment
-		self.occurences.build(is_increment: true)
+		self.occurrences.create(is_increment: true)
 	end
 
 	def decrement
-		self.occurences.build(is_increment: false)
+		self.occurrences.create(is_increment: false)
 	end
 end
