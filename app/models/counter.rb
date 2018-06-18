@@ -1,5 +1,5 @@
 class Counter < ApplicationRecord
-	has_many :occurences
+	has_many :occurrences
 
 	def current_count
 		self.occurences.is_increment.count - self.occurences.is_decrement.count
