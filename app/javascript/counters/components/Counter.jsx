@@ -16,6 +16,7 @@ class Counter extends React.Component {
     };
     this.incrementCounter = this.incrementCounter.bind(this);
     this.decrementCounter = this.decrementCounter.bind(this);
+    this.resetCounter = this.resetCounter.bind(this);
   }
 
   incrementCounter (){
@@ -27,7 +28,7 @@ class Counter extends React.Component {
     }), () => {
       // setState callback
       const counter = this.state.counter;
-      axios.put(`api/counters/${counter.id}`, {counter})
+      axios.post(`api/counters/${counter.id}/increment`, {counter})
         .then(response => {
           console.log(response);
         })
@@ -43,7 +44,23 @@ class Counter extends React.Component {
     }), () => {
       // setState callback
       const counter = this.state.counter;
-      axios.put(`api/counters/${counter.id}`, {counter})
+      axios.post(`api/counters/${counter.id}/decrement`, {counter})
+        .then(response => {
+          console.log(response);
+        })
+    });
+  }
+
+  resetCounter (){
+    this.setState((prevState) => ({
+        counter: {
+            ...prevState.counter,
+            count: 0
+        }
+    }), () => {
+      // setState callback
+      const counter = this.state.counter;
+      axios.post(`api/counters/${counter.id}/reset`, {counter})
         .then(response => {
           console.log(response);
         })
@@ -95,7 +112,7 @@ class Counter extends React.Component {
       return (
         <div>
           <CounterDisplay name={counter.name} current_count={counter.count} />
-          <CounterActions incrementCounter={this.incrementCounter} decrementCounter={this.decrementCounter} />
+          <CounterActions incrementCounter={this.incrementCounter} decrementCounter={this.decrementCounter} resetCounter={this.resetCounter} />
           <Counters />
         </div>
       );
