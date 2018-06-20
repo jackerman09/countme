@@ -14,6 +14,24 @@ class Api::CountersController < ApplicationController
   	@counter.update_attributes(counter_params)
   end
 
+  def increment
+    @counter = Counter.find(params[:id])
+    @counter.increment
+    render 'counters/show'
+  end
+
+  def decrement
+    @counter = Counter.find(params[:id])
+    @counter.decrement
+    render 'counters/show'
+  end
+
+  def reset
+    @counter = Counter.find(params[:id])
+    @counter.reset
+    render 'counters/show'
+  end
+
   private
 
   def counter_params
