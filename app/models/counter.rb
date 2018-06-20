@@ -6,10 +6,20 @@ class Counter < ApplicationRecord
 	end
 
 	def increment
-		self.occurrences.create(is_increment: true)
+		occurrence = self.occurrences.build(is_increment: true)
+		count_field = self.count
+		if occurrence.save
+			self.count = count_field + 1
+			self.save
+		end
 	end
 
 	def decrement
-		self.occurrences.create(is_increment: false)
+		occurrence = self.occurrences.build(is_increment: false)
+		count_field = self.count
+		if occurrence.save
+			self.count = count_field - 1
+			self.save
+		end
 	end
 end
