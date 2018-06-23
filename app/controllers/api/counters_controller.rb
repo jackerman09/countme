@@ -17,19 +17,19 @@ class Api::CountersController < ApplicationController
   def increment
     @counter = Counter.find(params[:id])
     @counter.increment
-    render 'counters/show'
+    render 'api/counters/show'
   end
 
   def decrement
     @counter = Counter.find(params[:id])
     @counter.decrement
-    render 'counters/show'
+    render 'api/counters/show'
   end
 
   def reset
     @counter = Counter.find(params[:id])
     @counter.reset
-    render 'counters/show'
+    render 'api/counters/show'
   end
 
   private
