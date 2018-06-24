@@ -113,7 +113,6 @@ class Counter extends React.Component {
         <div>
           <CounterDisplay name={counter.name} current_count={counter.count} />
           <CounterActions incrementCounter={this.incrementCounter} decrementCounter={this.decrementCounter} resetCounter={this.resetCounter} />
-          <Counters />
         </div>
       );
     }
